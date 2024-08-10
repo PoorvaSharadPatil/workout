@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Push-Up Counter</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        .exercise-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .exercise-info h2 {
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .exercise-info p {
+            color: #fff;
+        }
+
+        .exercise-image {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Push-Up Counter</h1>
+
+    <div class="exercise-info">
+        <h2>About Push-Ups</h2>
+        <p>Push-ups are a fundamental bodyweight exercise that target multiple muscle groups, including the chest, shoulders, triceps, and core.</p>
+        <p>Performing push-ups correctly helps to strengthen the upper body and core, improve posture, and enhance overall upper body endurance.</p>
+        <img src="https://media.gq.com/photos/59712c8b75d2965381f8bf69/16:9/w_2560%2Cc_limit/2017-06_GQ_FITNESS-Push-Ups_3x2.jpg" alt="Push-Up" class="exercise-image">
+    </div>
+
+    <button id="startButton">Start Push-Up Counter</button>
+
+    <div id="output"></div>
+
+    <script>
+        document.getElementById("startButton").addEventListener("click", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/run_pushupcounter_script");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("output").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
